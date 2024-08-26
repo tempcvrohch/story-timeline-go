@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  nats:
+    image: "nats:2.10.12"
+    ports:
+      - "${NATS_PORT}:${NATS_PORT}"
+      - "${NATS_HTTP_PORT}:${NATS_HTTP_PORT}"
+    networks:
+      - main
+    restart: unless-stopped
+    volumes:
+      - "nats:/data"
+    command:
+      - "--name=nats-main"
+      - "--http_port=${NATS_HTTP_PORT}"
+      - "--js"
+      - "--sd=/data"
+
+networks:
+  main:
+
+volumes:
+  nats:

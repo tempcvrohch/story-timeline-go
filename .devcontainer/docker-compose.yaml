@@ -1,0 +1,27 @@
+version: "3"
+services:
+  story-timeline-go:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        VARIANT: 1.23
+    volumes:
+      - .:/workspace-story-timeline-go
+      - type: tmpfs
+        target: /tmp
+      - "gopath:$GOPATH/pkg/mod"
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    env_file:
+      - .env
+    networks:
+      - main
+    environment:
+      - GOPATH=/go
+
+# TODO: when using multiple projects with go, make this volume external and create it beforehand.
+volumes:
+  gopath:
+
+networks:
+  main:

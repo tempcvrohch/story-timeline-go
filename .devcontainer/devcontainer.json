@@ -1,0 +1,24 @@
+{
+  "dockerComposeFile": ["../docker-compose.yaml", "docker-compose.yaml"],
+  "service": "story-timeline-go",
+  "workspaceFolder": "/workspace-story-timeline-go",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+      },
+      "extensions": ["humao.rest-client", "esbenp.prettier-vscode", "golang.go"]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "mounts": [
+    "type=tmpfs,destination=/tmp,tmpfs-mode=1777,exec=true"
+  ],
+  "postCreateCommand": {
+    "chown gopath": "sudo chown -R vscode /go",
+    "chown tmp": "sudo chown -R vscode:vscode /tmp"
+  }
+}
