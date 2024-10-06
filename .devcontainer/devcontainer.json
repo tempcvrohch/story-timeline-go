@@ -20,5 +20,7 @@
   "postCreateCommand": {
     "chown gopath": "sudo chown -R vscode /go",
     "chown tmp": "sudo chown -R vscode:vscode /tmp"
-  }
+  },
+  "remoteUser": "root",
+  "containerUser": "root"
 }
